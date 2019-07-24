@@ -6,13 +6,14 @@
 
 .questionContainer {
   display: flex;
-  margin: 20px;
-  height: 200px;
+  margin: 2.5%;
+  width: 90%;
+  height: 450px;
 }
 
 .questionColumn {
   background: #517ec6;
-  width: 500px;
+  width: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,7 +22,7 @@
 }
 
 .answersColumn {
-  width: 500px;
+  width: 50%;
   border: 10px solid #517ec6;
   display: flex;
   justify-content: space-around;
@@ -34,23 +35,25 @@
   width: 95%;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .changeTitleInput {
-  height: 30px;
+  height: 50px;
+  font-size: 30px;
   margin-bottom: 5px;
-  font-size: 15px;
   border-radius: 5px;
   text-align: center;
+  width: 100%;
 }
 
 .updateButton {
-  height: 30px;
-  font-size: 15px;
+  height: 50px;
+  font-size: 30px;
   background: white;
   border-radius: 5px;
   cursor: pointer;
-  transition: all 0.5s;
+  transition: color 0.5s;
   border: 1px solid #517ec6;
 }
 .updateButton:hover {
@@ -62,12 +65,12 @@
 .deleteButton {
   width: 95%;
   margin: 10px;
-  height: 30px;
-  font-size: 15px;
+  height: 50px;
+  font-size: 30px;
   background: white;
   border-radius: 5px;
   cursor: pointer;
-  transition: all 0.5s;
+  transition: color 0.5s;
   border: 1px solid #517ec6;
 }
 .deleteButton:hover {
@@ -77,15 +80,16 @@
 }
 
 .questionTitle {
+  text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50px;
-  font-size: 20px;
+  height: 200px;
+  font-size: 40px;
   color: white;
   text-decoration: none;
   border-bottom: 1px solid transparent;
-  transition: all 0.5s;
+  transition: border 0.5s;
 }
 
 .questionTitle:hover {
@@ -97,17 +101,42 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-  font-size: 30px;
-  width: 50%;
+  width: 10%;
 }
 
 .optionsContainer {
-  width: 100%;
-  height: 150px;
+  height: 350px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  width: 50%;
-  border-right: 1px solid #517ec6;
+  width: 90%;
+}
+
+// @media (min-width: 1500px) {
+//   .questionContainer {
+//     height: 300px;
+//   }
+// }
+
+@media (min-width: 1000px) {
+  .questionContainer {
+    height: 250px;
+  }
+
+  .questionTitle {
+    height: 100px;
+    font-size: 20px;
+  }
+
+  .changeTitleInput,
+  .updateButton,
+  .deleteButton {
+    height: 30px;
+    font-size: 15px;
+  }
+
+  .optionsContainer {
+    height: 150px;
+  }
 }

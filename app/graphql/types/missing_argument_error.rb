@@ -3,7 +3,8 @@ module Types
     field :errors, String, null: false
 
     def errors
-      "Missing an argument..."
+      # "Missing an argument..."
+      object.errors
     end
   end
 end

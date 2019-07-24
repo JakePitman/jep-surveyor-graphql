@@ -39,7 +39,7 @@
   background: none;
   border: 1px solid #517ec6;
   cursor: pointer;
-  transition: all 0.5s;
+  transition: color 0.5s;
   margin-top: 20px;
 }
 .updateButton:hover,
@@ -54,7 +54,7 @@
   font-size: 30px;
   text-decoration: none;
   border-bottom: 1px solid transparent;
-  transition: all 0.5s;
+  transition: color 0.5s;
 }
 .backLink:hover {
   border-bottom: 1px solid #517ec6;

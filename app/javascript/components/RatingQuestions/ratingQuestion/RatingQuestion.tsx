@@ -1,7 +1,8 @@
 import * as React from "react";
 import * as styles from "./RatingQuestion.module.scss";
-import axios from "axios";
-import RatingQuestionOption from "./RatingQuestionOption";
+import RatingQuestionOption from "./ratingQuestionOption/RatingQuestionOption";
+import RatingQuestionButton from "./ratingQuestionButton/RatingQuestionButton";
+import avulseString from "../../helperFunctions/avulseString";
 
 interface RatingQuestionProps {
   question: { title: string; id: string };
@@ -30,19 +31,20 @@ class RatingQuestion extends React.Component<RatingQuestionProps> {
 
   updateQuestionName = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (this.state.updatedQuestionNameInput) {
-      axios
-        .put(`${this.props.ratingQuestionsUrl}/${this.questionData.id}.json`, {
-          title: this.state.updatedQuestionNameInput
-        })
-        .then(res => {
-          this.setState({
-            questionTitle: this.state.updatedQuestionNameInput,
-            updatedQuestionNameInput: ""
-          });
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      // axios
+      //   .put(`${this.props.ratingQuestionsUrl}/${this.questionData.id}.json`, {
+      //     title: this.state.updatedQuestionNameInput
+      //   })
+      //   .then(res => {
+      //     this.setState({
+      //       questionTitle: this.state.updatedQuestionNameInput,
+      //       updatedQuestionNameInput: ""
+      //     });
+      //   })
+      //   .catch(err => {
+      //     console.log(err);
+      //   });
+      alert("update clicked");
     } else {
       alert("Please enter something first!");
     }
@@ -91,7 +93,7 @@ class RatingQuestion extends React.Component<RatingQuestionProps> {
               }
               className={styles.questionTitle}
             >
-              "{this.state.questionTitle}"
+              "{avulseString(this.state.questionTitle, 70)}"
             </a>
             <div className={styles.changeTitleContainer}>
               <input
@@ -101,20 +103,17 @@ class RatingQuestion extends React.Component<RatingQuestionProps> {
                 placeholder="new title"
                 onChange={this.updateQuestionNameInput}
               />
-              <button
-                className={styles.updateButton}
-                onClick={this.updateQuestionName}
-              >
-                Update
-              </button>
+              <RatingQuestionButton
+                label="update"
+                clickHandler={this.updateQuestionName}
+              />
             </div>
-            <button
-              className={styles.deleteButton}
+
+            <RatingQuestionButton
+              label="delete"
               data-question-id={this.questionData.id}
-              onClick={this.props.deleteQuestion}
-            >
-              Delete Question
-            </button>
+              clickHandler={this.props.deleteQuestion}
+            />
           </div>
           <div className={styles.answersColumn}>
             <div className={styles.optionsContainer}>
@@ -122,11 +121,10 @@ class RatingQuestion extends React.Component<RatingQuestionProps> {
             </div>
             <h1
               className={styles.selectionIndicator}
-              style={{ color: this.optionColors[this.state.selectedOption] }}
-            >
-              {" "}
-              {this.state.selectedOption}{" "}
-            </h1>
+              style={{
+                background: this.optionColors[this.state.selectedOption]
+              }}
+            />
           </div>
         </div>
       </div>

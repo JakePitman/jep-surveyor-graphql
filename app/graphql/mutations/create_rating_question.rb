@@ -7,7 +7,8 @@ module Mutations
 
     def resolve(title: nil, survey_id: nil)
       begin
-        RatingQuestion.create!(title: title, survey: Survey.find(survey_id))
+        survey = Survey.find(survey_id)
+        survey.rating_questions.create!(title: title)
       rescue Mongoid::Errors::Validations => e
         puts "RESCUING #{e.class}"
         e

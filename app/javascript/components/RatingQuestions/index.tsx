@@ -1,8 +1,14 @@
 import * as React from "react";
 import axios from "axios";
 import * as styles from "./index.module.scss";
-import RatingQuestion from "./RatingQuestion";
-import NewQuestionForm from "./NewQuestionForm";
+import RatingQuestion from "./ratingQuestion/RatingQuestion";
+import NewQuestionForm from "./newQuestionForm/NewQuestionForm";
+
+import ApolloClient from "apollo-boost";
+
+const client = new ApolloClient({
+  uri: "http://localhost:3000/graphql"
+});
 
 interface Question {
   id: string;
@@ -24,10 +30,10 @@ class RatingQuestions extends React.Component<RatingQuestionsProps, {}> {
   //------------------------NEW QUESTION FUNCTIONS----------------------------
 
   //UPDATE UI AFTER POST REQUEST
-  updateUiAfterPost = (newQuestion) => {
-    const updatedQuestions: any = this.state.questions.concat(newQuestion)
-    this.setState({questions: updatedQuestions})
-  }
+  updateUiAfterPost = newQuestion => {
+    const updatedQuestions: any = this.state.questions.concat(newQuestion);
+    this.setState({ questions: updatedQuestions });
+  };
 
   //----------------------DELETE QUESTION FUNCTIONS----------------------------
 

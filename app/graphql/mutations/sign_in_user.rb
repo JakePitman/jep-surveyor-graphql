@@ -16,7 +16,7 @@ module Mutations
 
       payload = {
         email: user.email,
-        id: user.id
+        id: user.id.to_s
       }
       token = JWT.encode payload, ENV["SECRET"], 'HS256'
 
