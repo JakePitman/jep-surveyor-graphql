@@ -6,7 +6,7 @@ module Mutations
 
     type Types::UpdateRatingQuestionResponseResult
 
-    def resolve(id: nil)
+    def resolve(id: nil, previous_response: nil, updated_response: nil)
       begin
         target_question = RatingQuestion.find(id)
         {id: id}
