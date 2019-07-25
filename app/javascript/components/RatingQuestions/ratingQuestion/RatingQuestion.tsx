@@ -3,6 +3,8 @@ import * as styles from "./RatingQuestion.module.scss";
 import RatingQuestionOption from "./ratingQuestionOption/RatingQuestionOption";
 import RatingQuestionButton from "./ratingQuestionButton/RatingQuestionButton";
 import avulseString from "../../helperFunctions/avulseString";
+import { Mutation } from "react-apollo";
+import { gql } from "apollo-boost";
 
 interface RatingQuestionProps {
   question: { title: string; id: string };
@@ -50,15 +52,37 @@ class RatingQuestion extends React.Component<RatingQuestionProps> {
     }
   };
 
+  // TODO create & implement the updateQuestionResponse resolver
+  UpdateQuestionResponseMutation = gql`
+    mutation($email: String!, $password: String!) {
+      signinUser(email: { email: $email, password: $password }) {
+        token
+      }
+    }
+  `;
+
   renderQuestionOptions = () => {
     return this.questionValues.map((questionValue, i) => {
       return (
-        <RatingQuestionOption
-          key={questionValue}
-          questionId={this.questionData.id}
-          value={questionValue}
-          optionSelected={this.optionSelected}
-        />
+        <Mutation
+          mutation={this.UpdateQuestionResponseMutation}
+          variables={{
+            previousResponse: this.state.selectedOption,
+            updatedResponse: questionValue
+          }}
+          onCompleted={(data: any | Error) => {}}
+        >
+          {(postMutation: () => void) => (
+            <div onClick={postMutation}>
+              <RatingQuestionOption
+                key={questionValue}
+                questionId={this.questionData.id}
+                value={questionValue}
+                optionSelected={this.optionSelected}
+              />
+            </div>
+          )}
+        </Mutation>
       );
     });
   };
