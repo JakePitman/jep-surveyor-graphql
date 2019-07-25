@@ -73,7 +73,7 @@ class RatingQuestion extends React.Component<RatingQuestionProps> {
           onCompleted={(data: any | Error) => {}}
         >
           {(postMutation: () => void) => (
-            <div onClick={postMutation}>
+            <div className={styles.optionContainer} onClick={postMutation}>
               <RatingQuestionOption
                 key={questionValue}
                 questionId={this.questionData.id}

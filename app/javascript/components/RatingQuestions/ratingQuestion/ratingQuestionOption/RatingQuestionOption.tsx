@@ -9,7 +9,7 @@ interface RatingQuestionOptionProps {
 
 const RatingQuestionOption = (props: RatingQuestionOptionProps) => {
   return (
-    <div className={styles.optionContainer}>
+    <React.Fragment>
       <input
         className={styles.optionInput}
         type="radio"
@@ -18,7 +18,7 @@ const RatingQuestionOption = (props: RatingQuestionOptionProps) => {
         onChange={props.optionSelected}
       />
       <p className={styles.optionValue}>{props.value}</p>
-    </div>
+    </React.Fragment>
   );
 };
 
