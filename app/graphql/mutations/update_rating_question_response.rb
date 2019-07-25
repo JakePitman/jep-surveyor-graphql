@@ -1,3 +1,5 @@
+require "http"
+
 module Mutations
   class UpdateRatingQuestionResponse < Mutations::BaseMutation
     argument :id, ID, required: true
@@ -8,7 +10,7 @@ module Mutations
 
     def resolve(id: nil, previous_response: nil, updated_response: nil)
       begin
-        target_question = RatingQuestion.find(id)
+        HTTP.post("POSTBIN_ENDPOINT_GOES_HERE", :json => {:id => id.to_s, :previous_response => previous_response, :updated_response => updated_response})
         {id: id, previous_response: previous_response, updated_response: updated_response}
       rescue Mongoid::Errors::DocumentNotFound => e
         e
