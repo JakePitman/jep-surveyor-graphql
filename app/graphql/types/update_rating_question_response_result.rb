@@ -1,12 +1,12 @@
 module Types
   class UpdateRatingQuestionResponseResult < BaseUnion
-    possible_types RatingQuestionType, DocumentNotFoundError
+    possible_types RatingQuestionResponseType, DocumentNotFoundError
     
     def self.resolve_type(object, _context)
       if object.is_a?(Mongoid::Errors::DocumentNotFound)
         DocumentNotFoundError
       else
-        RatingQuestionType
+        RatingQuestionResponseType
       end
     end
   end

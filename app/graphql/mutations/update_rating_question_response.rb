@@ -9,7 +9,7 @@ module Mutations
     def resolve(id: nil, previous_response: nil, updated_response: nil)
       begin
         target_question = RatingQuestion.find(id)
-        {id: id}
+        {id: id, previous_response: previous_response, updated_response: updated_response}
       rescue Mongoid::Errors::DocumentNotFound => e
         e
       end
