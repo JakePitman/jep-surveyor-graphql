@@ -39,11 +39,25 @@ class RatingQuestion extends React.Component<RatingQuestionProps> {
     });
   };
 
-  // TODO create & implement the updateQuestionResponse resolver
   UpdateQuestionResponseMutation = gql`
-    mutation($email: String!, $password: String!) {
-      signinUser(email: { email: $email, password: $password }) {
-        token
+    mutation(
+      $questionId: ID!
+      $previousResponse: String!
+      $updatedResponse: String!
+    ) {
+      updateRatingQuestionResponse(
+        id: $questionId
+        previousResponse: $previousResponse
+        updatedResponse: $updatedResponse
+      ) {
+        ... on RatingQuestionResponse {
+          id
+          previousResponse
+          updatedResponse
+        }
+        ... on DocumentNotFoundError {
+          errors
+        }
       }
     }
   `;
@@ -54,6 +68,7 @@ class RatingQuestion extends React.Component<RatingQuestionProps> {
         <Mutation
           mutation={this.UpdateQuestionResponseMutation}
           variables={{
+            questionId: this.questionData.id,
             previousResponse: this.state.selectedOption,
             updatedResponse: questionValue
           }}
