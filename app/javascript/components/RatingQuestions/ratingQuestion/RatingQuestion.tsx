@@ -1,7 +1,8 @@
 import * as React from "react";
 import * as styles from "./RatingQuestion.module.scss";
 import RatingQuestionOption from "./ratingQuestionOption/RatingQuestionOption";
-import RatingQuestionButton from "./ratingQuestionButton/RatingQuestionButton";
+import RatingQuestionButton from "./ratingQuestionButtons/RatingQuestionButton";
+import UpdateRatingQuestionButton from "./ratingQuestionButtons/UpdateRatingQuestionButton";
 import avulseString from "../../helperFunctions/avulseString";
 import { Mutation } from "react-apollo";
 import { gql } from "apollo-boost";
@@ -31,25 +32,11 @@ class RatingQuestion extends React.Component<RatingQuestionProps> {
     this.setState({ updatedQuestionNameInput: e.target.value });
   };
 
-  updateQuestionName = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (this.state.updatedQuestionNameInput) {
-      // axios
-      //   .put(`${this.props.ratingQuestionsUrl}/${this.questionData.id}.json`, {
-      //     title: this.state.updatedQuestionNameInput
-      //   })
-      //   .then(res => {
-      //     this.setState({
-      //       questionTitle: this.state.updatedQuestionNameInput,
-      //       updatedQuestionNameInput: ""
-      //     });
-      //   })
-      //   .catch(err => {
-      //     console.log(err);
-      //   });
-      alert("update clicked");
-    } else {
-      alert("Please enter something first!");
-    }
+  updateActualTitle = () => {
+    this.setState({
+      questionTitle: this.state.updatedQuestionNameInput,
+      updatedQuestionNameInput: ""
+    });
   };
 
   // TODO create & implement the updateQuestionResponse resolver
@@ -75,7 +62,6 @@ class RatingQuestion extends React.Component<RatingQuestionProps> {
           {(postMutation: () => void) => (
             <div className={styles.optionContainer} onClick={postMutation}>
               <RatingQuestionOption
-                key={questionValue}
                 questionId={this.questionData.id}
                 value={questionValue}
                 optionSelected={this.optionSelected}
@@ -127,9 +113,10 @@ class RatingQuestion extends React.Component<RatingQuestionProps> {
                 placeholder="new title"
                 onChange={this.updateQuestionNameInput}
               />
-              <RatingQuestionButton
-                label="update"
-                clickHandler={this.updateQuestionName}
+              <UpdateRatingQuestionButton
+                questionId={this.questionData.id}
+                updatedQuestionTitle={this.state.updatedQuestionNameInput}
+                handleUpdate={this.updateActualTitle}
               />
             </div>
 
