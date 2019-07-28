@@ -66,6 +66,7 @@ class RatingQuestion extends React.Component<RatingQuestionProps> {
     return this.questionValues.map((questionValue, i) => {
       return (
         <Mutation
+          key={questionValue}
           mutation={this.UpdateQuestionResponseMutation}
           variables={{
             questionId: this.questionData.id,
