@@ -8,4 +8,3 @@ export const deleteButton: string;
 export const questionTitle: string;
 export const selectionIndicator: string;
 export const optionsContainer: string;
-export const optionContainer: string;

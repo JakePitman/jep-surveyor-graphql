@@ -39,52 +39,17 @@ class RatingQuestion extends React.Component<RatingQuestionProps> {
     });
   };
 
-  UpdateQuestionResponseMutation = gql`
-    mutation(
-      $questionId: ID!
-      $previousResponse: String!
-      $updatedResponse: String!
-    ) {
-      updateRatingQuestionResponse(
-        id: $questionId
-        previousResponse: $previousResponse
-        updatedResponse: $updatedResponse
-      ) {
-        ... on RatingQuestionResponse {
-          id
-          previousResponse
-          updatedResponse
-        }
-        ... on DocumentNotFoundError {
-          errors
-        }
-      }
-    }
-  `;
 
   renderQuestionOptions = () => {
     return this.questionValues.map((questionValue, i) => {
       return (
-        <Mutation
+        <RatingQuestionOption
           key={questionValue}
-          mutation={this.UpdateQuestionResponseMutation}
-          variables={{
-            questionId: this.questionData.id,
-            previousResponse: this.state.selectedOption,
-            updatedResponse: questionValue
-          }}
-          onCompleted={(data: any | Error) => {}}
-        >
-          {(postMutation: () => void) => (
-            <div className={styles.optionContainer} onClick={postMutation}>
-              <RatingQuestionOption
-                questionId={this.questionData.id}
-                value={questionValue}
-                optionSelected={this.optionSelected}
-              />
-            </div>
-          )}
-        </Mutation>
+          questionId={this.questionData.id}
+          questionValue={questionValue}
+          currentlySelectedOption={this.state.selectedOption}
+          optionSelected={this.optionSelected}
+        />
       );
     });
   };
