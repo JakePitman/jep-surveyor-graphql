@@ -1,18 +1,6 @@
 import React from "react";
 import RatingQuestion from "../RatingQuestions/ratingQuestion/RatingQuestion";
 import styles from "../RatingQuestions/index.module.scss";
-import { Mutation } from "react-apollo";
-
-import deleteRatingQuestionMutation from "./gqlOperations/deleteRatingQuestionMutation";
-
-const deleteQuestion = (e: React.FormEvent<HTMLButtonElement>) => {
-  // console.log("delete question clicked");
-  // const targetElement: any = e.target;
-  // const questionId = targetElement.dataset.questionId;
-  // const targetUrl = this.removeJsonFromUrl(this.props.ratingQuestionsUrl);
-  // console.log(targetUrl);
-  alert("delete clicked");
-};
 
 const removeJsonFromUrl = () => {
   return "string";
@@ -30,6 +18,12 @@ class Survey extends React.Component<Props> {
     questions: this.props.surveyData.ratingQuestions
   };
 
+  deleteQuestion = (id: string) => {
+    const remainingQuestions: any = this.state.questions.filter(q => q.id !== id)
+    this.setState({questions: remainingQuestions})
+    console.log("TARGET QUESTION", remainingQuestions)
+  };
+
   render() {
     return (
       <div>
@@ -38,7 +32,7 @@ class Survey extends React.Component<Props> {
           {this.state.questions.map(question => (
             <RatingQuestion
               key={question.id}
-              deleteQuestion={deleteQuestion}
+              deleteQuestion={this.deleteQuestion}
               question={question}
               ratingQuestionsUrl={removeJsonFromUrl()}
             />

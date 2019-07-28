@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as styles from "./RatingQuestion.module.scss";
-import RatingQuestionButton from "./ratingQuestionButtons/RatingQuestionButton";
 import UpdateRatingQuestionButton from "./ratingQuestionButtons/UpdateRatingQuestionButton";
+import DeleteRatingQuestionButton from "./ratingQuestionButtons/DeleteRatingQuestionButton";
 import avulseString from "../../helperFunctions/avulseString";
 import RatingQuestionOptions from "./ratingQuestionOptions/RatingQuestionOptions"
 
@@ -67,10 +67,10 @@ class RatingQuestion extends React.Component<RatingQuestionProps> {
               />
             </div>
 
-            <RatingQuestionButton
-              label="delete"
-              data-question-id={this.questionData.id}
-              clickHandler={this.props.deleteQuestion}
+            <DeleteRatingQuestionButton
+              questionId={this.questionData.id}
+              updatedQuestionTitle={this.state.updatedQuestionNameInput}
+              handleDelete={this.props.deleteQuestion}
             />
           </div>
           <RatingQuestionOptions 
