@@ -21,16 +21,6 @@
   border-radius: 5px 0px 0px 5px;
 }
 
-.answersColumn {
-  width: 50%;
-  border: 10px solid #517ec6;
-  display: flex;
-  justify-content: space-around;
-  background: white;
-  align-items: center;
-  border-radius: 0px 5px 5px 0px;
-}
-
 .changeTitleContainer {
   width: 95%;
   display: flex;
@@ -96,22 +86,6 @@
   border-bottom: 1px solid white;
 }
 
-.selectionIndicator {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 10%;
-}
-
-.optionsContainer {
-  height: 350px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  width: 90%;
-}
 
 // @media (min-width: 1500px) {
 //   .questionContainer {

@@ -1,11 +1,9 @@
 import * as React from "react";
 import * as styles from "./RatingQuestion.module.scss";
-import RatingQuestionOption from "./ratingQuestionOption/RatingQuestionOption";
 import RatingQuestionButton from "./ratingQuestionButtons/RatingQuestionButton";
 import UpdateRatingQuestionButton from "./ratingQuestionButtons/UpdateRatingQuestionButton";
 import avulseString from "../../helperFunctions/avulseString";
-import { Mutation } from "react-apollo";
-import { gql } from "apollo-boost";
+import RatingQuestionOptions from "./ratingQuestionOptions/RatingQuestionOptions"
 
 interface RatingQuestionProps {
   question: { title: string; id: string };
@@ -37,38 +35,6 @@ class RatingQuestion extends React.Component<RatingQuestionProps> {
       questionTitle: this.state.updatedQuestionNameInput,
       updatedQuestionNameInput: ""
     });
-  };
-
-
-  renderQuestionOptions = () => {
-    return this.questionValues.map((questionValue, i) => {
-      return (
-        <RatingQuestionOption
-          key={questionValue}
-          questionId={this.questionData.id}
-          questionValue={questionValue}
-          currentlySelectedOption={this.state.selectedOption}
-          optionSelected={this.optionSelected}
-        />
-      );
-    });
-  };
-
-  //----------------------------------------------------------------------
-  questionValues = [
-    "strongly-disagree",
-    "disagree",
-    "neutral",
-    "agree",
-    "strongly-agree"
-  ];
-
-  optionColors: any = {
-    "strongly-disagree": "#d31d3b",
-    disagree: "#ea7b04",
-    neutral: "#f2da00",
-    agree: "#b9f100",
-    "strongly-agree": "#3dce04"
   };
 
   render() {
@@ -107,17 +73,11 @@ class RatingQuestion extends React.Component<RatingQuestionProps> {
               clickHandler={this.props.deleteQuestion}
             />
           </div>
-          <div className={styles.answersColumn}>
-            <div className={styles.optionsContainer}>
-              {this.renderQuestionOptions()}
-            </div>
-            <h1
-              className={styles.selectionIndicator}
-              style={{
-                background: this.optionColors[this.state.selectedOption]
-              }}
-            />
-          </div>
+          <RatingQuestionOptions 
+            questionId={this.questionData.id}
+            currentlySelectedOption={this.state.selectedOption}
+            optionSelected={this.optionSelected}
+          />
         </div>
       </div>
     );
