@@ -10,7 +10,7 @@ module Mutations
 
     def resolve(id: nil, previous_response: nil, updated_response: nil)
       begin
-        HTTP.post("POSTBIN_ENDPOINT_GOES_HERE", :json => {:id => id.to_s, :previous_response => previous_response, :updated_response => updated_response})
+        HTTP.post("http://localhost:8080/updateRatingQuestionResponse", :json => {:id => id.to_s, :previous_response => previous_response, :updated_response => updated_response})
         {id: id, previous_response: previous_response, updated_response: updated_response}
       rescue Mongoid::Errors::DocumentNotFound => e
         e
