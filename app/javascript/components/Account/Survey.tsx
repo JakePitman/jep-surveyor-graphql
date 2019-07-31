@@ -8,6 +8,7 @@ const removeJsonFromUrl = () => {
 
 interface Props {
   surveyData: {
+    id: string;
     name: string;
     ratingQuestions: { id: any; title: string }[];
   };
@@ -35,6 +36,7 @@ class Survey extends React.Component<Props> {
               deleteQuestion={this.deleteQuestion}
               question={question}
               ratingQuestionsUrl={removeJsonFromUrl()}
+              surveyId={this.props.surveyData.id}
             />
           ))}
         </div>

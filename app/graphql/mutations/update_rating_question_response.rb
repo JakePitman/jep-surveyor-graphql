@@ -4,7 +4,7 @@ module Mutations
   class UpdateRatingQuestionResponse < Mutations::BaseMutation
     argument :survey_id, ID, required: true
     argument :question_id, ID, required: true
-    argument :response_id, ID, required: true
+    argument :response_id, String, required: true
     argument :value, Int, required: true
 \
     type Types::UpdateRatingQuestionResponseResult

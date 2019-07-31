@@ -6,15 +6,16 @@ import { gql } from "apollo-boost";
 interface RatingQuestionOptionProps {
   questionId: string;
   questionValue: string;
-  currentlySelectedOption: string,
+  currentlySelectedOption: string;
   optionSelected: React.ChangeEventHandler;
+  surveyId: string;
 }
 
 const UpdateQuestionResponseMutation = gql`
   mutation(
     $questionId: ID!
     $surveyId: ID!
-    $responseId: ID!
+    $responseId: String!
     $value: Int!
   ) {
     updateRatingQuestionResponse(
@@ -38,30 +39,30 @@ const UpdateQuestionResponseMutation = gql`
 
 const RatingQuestionOption = (props: RatingQuestionOptionProps) => {
   return (
-        <Mutation
-          mutation={UpdateQuestionResponseMutation}
-          // TODO pass in the clicked value instead of hardcoded value
-          variables={{
-            questionId: 12345,
-            surveyId: 6543,
-            responseId: 1234567890,
-            value: 3
-          }}
-          onCompleted={(data: any | Error) => {}}
-        >
-          {(postMutation: () => void) => (
-            <div className={styles.optionContainer} onClick={postMutation}>
-              <input
-                className={styles.optionInput}
-                type="radio"
-                name={props.questionId}
-                value={props.questionValue}
-                onChange={props.optionSelected}
-              />
-              <p className={styles.optionValue}>{props.questionValue}</p>
-            </div>
-          )}
-        </Mutation>
+    <Mutation
+      mutation={UpdateQuestionResponseMutation}
+      // TODO pass in the clicked value instead of hardcoded value
+      variables={{
+        questionId: props.questionId,
+        surveyId: props.surveyId,
+        responseId: "1234567890",
+        value: 3
+      }}
+      onCompleted={(data: any | Error) => {}}
+    >
+      {(postMutation: () => void) => (
+        <div className={styles.optionContainer} onClick={postMutation}>
+          <input
+            className={styles.optionInput}
+            type="radio"
+            name={props.questionId}
+            value={props.questionValue}
+            onChange={props.optionSelected}
+          />
+          <p className={styles.optionValue}>{props.questionValue}</p>
+        </div>
+      )}
+    </Mutation>
   );
 };
 
