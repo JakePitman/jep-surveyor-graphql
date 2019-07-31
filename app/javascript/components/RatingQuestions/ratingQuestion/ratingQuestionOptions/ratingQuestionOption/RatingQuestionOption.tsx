@@ -37,6 +37,29 @@ const UpdateQuestionResponseMutation = gql`
   }
 `;
 
+const valueConverter = (value) => {
+  switch(value) {
+    case "strongly-disagree":
+      return 1
+      break
+    case "disagree":
+      return 2
+      break
+    case "neutral":
+      return 3
+      break
+    case "agree":
+      return 4
+      break
+    case "strongly-agree":
+      return 5
+      break
+    default:
+      throw `Invalid string passed to value converter: ${value} `
+  }
+}
+
+
 const RatingQuestionOption = (props: RatingQuestionOptionProps) => {
   return (
     <Mutation
@@ -46,7 +69,7 @@ const RatingQuestionOption = (props: RatingQuestionOptionProps) => {
         questionId: props.questionId,
         surveyId: props.surveyId,
         responseId: "1234567890",
-        value: 3
+        value: valueConverter(props.questionValue)
       }}
       onCompleted={(data: any | Error) => {}}
     >
