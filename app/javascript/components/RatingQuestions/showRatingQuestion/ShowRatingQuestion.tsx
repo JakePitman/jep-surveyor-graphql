@@ -1,7 +1,6 @@
 import React from "react";
 import * as styles from "./ShowRatingQuestion.module.scss";
 import axios from "axios";
-import { questionColumn } from "./RatingQuestion.module.scss";
 interface RatingQuestionProps {
   question: { title: string; id: string };
   deleteQuestion: any;
