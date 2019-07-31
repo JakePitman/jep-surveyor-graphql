@@ -1,7 +1,8 @@
 module Types
   class RatingQuestionResponseType < BaseObject
-    field :id, ID, null: false
-    field :previous_response, String, null: false
-    field :updated_response, String, null: false
+    field :question_id, ID, null: false
+    field :survey_id, ID, null: false
+    field :response_id, ID, null: false
+    field :value, Int, null: false
   end
 end

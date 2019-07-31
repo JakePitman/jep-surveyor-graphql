@@ -13,18 +13,21 @@ interface RatingQuestionOptionProps {
 const UpdateQuestionResponseMutation = gql`
   mutation(
     $questionId: ID!
-    $previousResponse: String!
-    $updatedResponse: String!
+    $surveyId: ID!
+    $responseId: ID!
+    $value: Int!
   ) {
     updateRatingQuestionResponse(
-      id: $questionId
-      previousResponse: $previousResponse
-      updatedResponse: $updatedResponse
+      questionId: $questionId
+      surveyId: $surveyId
+      responseId: $responseId
+      value: $value
     ) {
       ... on RatingQuestionResponse {
-        id
-        previousResponse
-        updatedResponse
+        questionId
+        surveyId
+        responseId
+        value
       }
       ... on DocumentNotFoundError {
         errors
@@ -37,10 +40,12 @@ const RatingQuestionOption = (props: RatingQuestionOptionProps) => {
   return (
         <Mutation
           mutation={UpdateQuestionResponseMutation}
+          // TODO pass in the clicked value instead of hardcoded value
           variables={{
-            questionId: props.questionId,
-            previousResponse: props.currentlySelectedOption,
-            updatedResponse: props.questionValue
+            questionId: 12345,
+            surveyId: 6543,
+            responseId: 1234567890,
+            value: 3
           }}
           onCompleted={(data: any | Error) => {}}
         >
