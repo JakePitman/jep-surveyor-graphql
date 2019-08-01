@@ -1,5 +1,5 @@
-import * as React from "react";
 import * as styles from "./RatingQuestionOption.module.scss";
+import * as React from "react";
 import { Mutation } from "react-apollo";
 import { gql } from "apollo-boost";
 import ls from "local-storage";
@@ -49,19 +49,14 @@ const valueConverter = value => {
   switch (value) {
     case "strongly-disagree":
       return 1;
-      break;
     case "disagree":
       return 2;
-      break;
     case "neutral":
       return 3;
-      break;
     case "agree":
       return 4;
-      break;
     case "strongly-agree":
       return 5;
-      break;
     default:
       throw `Invalid string passed to value converter: ${value} `;
   }
@@ -71,7 +66,6 @@ const RatingQuestionOption = (props: RatingQuestionOptionProps) => {
   return (
     <Mutation
       mutation={UpdateQuestionResponseMutation}
-      // TODO pass in the clicked value instead of hardcoded value
       variables={{
         questionId: props.questionId,
         surveyId: props.surveyId,
