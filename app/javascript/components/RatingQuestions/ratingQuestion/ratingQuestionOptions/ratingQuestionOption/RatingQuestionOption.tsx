@@ -2,6 +2,8 @@ import * as React from "react";
 import * as styles from "./RatingQuestionOption.module.scss";
 import { Mutation } from "react-apollo";
 import { gql } from "apollo-boost";
+import ls from "local-storage";
+import jwtDecode from "jwt-decode";
 
 interface RatingQuestionOptionProps {
   questionId: string;
@@ -37,6 +39,13 @@ const UpdateQuestionResponseMutation = gql`
   }
 `;
 
+const generateResponseId = (surveyId, questionId) => {
+  const token = ls("token");
+  const decodedToken = jwtDecode(token);
+  const userId = decodedToken.id;
+  return `${surveyId}-${questionId}-${userId}`;
+};
+
 const RatingQuestionOption = (props: RatingQuestionOptionProps) => {
   return (
     <Mutation
@@ -45,7 +54,7 @@ const RatingQuestionOption = (props: RatingQuestionOptionProps) => {
       variables={{
         questionId: props.questionId,
         surveyId: props.surveyId,
-        responseId: "1234567890",
+        responseId: generateResponseId(props.surveyId, props.questionId),
         value: 3
       }}
       onCompleted={(data: any | Error) => {}}
