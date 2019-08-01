@@ -2,7 +2,9 @@ ca = Account.create!({ name: "CultureAmp"})
 coles = Account.create!({ name: "Coles"})
 
 ca_user = User.create!({ name: "C.A.User", email: "user@cultureamp.com", password: "123456", account: ca})
+ca_user2 = User.create!({ name: "C.A.User2", email: "user2@cultureamp.com", password: "123456", account: ca})
 coles_user = User.create!({ name: "Coles.User", email: "user@coles.com", password: "123456", account: coles})
+coles_user2 = User.create!({ name: "Coles2.User", email: "user2@coles.com", password: "123456", account: coles})
 
 ca_survey_1 = Survey.create!({ name: "CA Survey 1", account: ca})
 ca_survey_2 = Survey.create!({ name: "CA Survey 2", account: ca})
