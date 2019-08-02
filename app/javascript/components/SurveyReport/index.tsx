@@ -1,14 +1,24 @@
 import * as React from "react";
+import Axios from "axios";
 
-class SurveyReport extends React.Component {
+interface SurveyProps {
+  survey_id: string;
+}
+class SurveyReport extends React.Component<SurveyProps> {
+  state = {};
+
+  componentDidMount() {
+    Axios.get("http://localhost:8080/").then();
+  }
+
   render() {
     return (
       <div>
-      
-        <h1>hello world</h1>
+        {this.props.survey_id}
+        <h1 />
       </div>
-    )
+    );
   }
 }
 
-export default SurveyReport
+export default SurveyReport;

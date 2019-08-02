@@ -7,5 +7,5 @@ Rails.application.routes.draw do
   resources :rating_questions
   root "rating_questions#index"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  get 'survey_report', to: "survey#report"
+  get 'survey_report/:survey_id', to: "survey#report"
 end
