@@ -8,14 +8,22 @@ class SurveyReport extends React.Component<SurveyProps> {
   state = {};
 
   componentDidMount() {
-    Axios.get("http://localhost:8080/").then();
+    Axios.get(
+      `http://localhost:8080/responses/?survey_id=${this.props.survey_id}`
+    )
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   render() {
     return (
       <div>
-        {this.props.survey_id}
-        <h1 />
+        <h1>{this.props.survey_id}</h1>
+        {/* <p>{this.props.}</p> */}
       </div>
     );
   }
