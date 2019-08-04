@@ -1,29 +1,24 @@
 import * as React from "react";
-import Axios from "axios";
+import ResponseCount from "./responseCount"
+import * as styles from "./index.module.scss";
 
 interface SurveyProps {
-  survey_id: string;
+  surveyId: string;
+  responseData: any;
 }
 class SurveyReport extends React.Component<SurveyProps> {
   state = {};
 
-  componentDidMount() {
-    Axios.get(
-      `http://localhost:8080/responses/?survey_id=${this.props.survey_id}`
-    )
-      .then(response => {
-        console.log(response);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
-
   render() {
+    console.log(this.props.responseData)
     return (
-      <div>
-        <h1>{this.props.survey_id}</h1>
-        {/* <p>{this.props.}</p> */}
+      <div className={styles.surveyResponsesContainer}>
+        <h1>{this.props.surveyId}</h1>
+        <ResponseCount responseTitle="Strongly Agree" responseCount={this.props.responseData["strongly-agree"]}/>
+        <ResponseCount responseTitle="Agree" responseCount={this.props.responseData["agree"]}/>
+        <ResponseCount responseTitle="Neutral" responseCount={this.props.responseData["neutral"]}/>
+        <ResponseCount responseTitle="Disagree" responseCount={this.props.responseData["disagree"]}/>
+        <ResponseCount responseTitle="Strongly Disagree" responseCount={this.props.responseData["strongly-disagree"]}/>
       </div>
     );
   }
