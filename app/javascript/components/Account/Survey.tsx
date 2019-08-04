@@ -29,6 +29,7 @@ class Survey extends React.Component<Props> {
     return (
       <div>
         <h2>{this.props.surveyData.name}</h2>
+        <a href={`/survey_report/${this.props.surveyData.id}`}>See Results</a>
         <div className={styles.list}>
           {this.state.questions.map(question => (
             <RatingQuestion
