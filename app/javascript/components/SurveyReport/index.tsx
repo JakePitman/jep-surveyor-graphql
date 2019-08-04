@@ -4,16 +4,24 @@ import * as styles from "./index.module.scss";
 
 interface SurveyProps {
   surveyId: string;
-  responseData: any;
+  surveyName: string;
+  responseData: {
+    "strongly-disagree": number,
+    "disagree": number,
+    "neutral": number,
+    "agree": number,
+    "strongly-agree": number
+  };
 }
+
 class SurveyReport extends React.Component<SurveyProps> {
   state = {};
 
+
   render() {
-    console.log(this.props.responseData)
     return (
       <div className={styles.surveyResponsesContainer}>
-        <h1>{this.props.surveyId}</h1>
+        <h1>{this.props.surveyName}</h1>
         <ResponseCount responseTitle="Strongly Agree" responseCount={this.props.responseData["strongly-agree"]}/>
         <ResponseCount responseTitle="Agree" responseCount={this.props.responseData["agree"]}/>
         <ResponseCount responseTitle="Neutral" responseCount={this.props.responseData["neutral"]}/>
