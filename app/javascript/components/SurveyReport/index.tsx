@@ -14,22 +14,16 @@ interface SurveyProps {
   };
 }
 
-class SurveyReport extends React.Component<SurveyProps> {
-  state = {};
+const SurveyReport = ( props: SurveyProps ) => (
 
-
-  render() {
-    return (
       <div className={styles.surveyResponsesContainer}>
-        <h1>{this.props.surveyName}</h1>
-        <ResponseCount responseTitle="Strongly Agree" responseCount={this.props.responseData["strongly-agree"]}/>
-        <ResponseCount responseTitle="Agree" responseCount={this.props.responseData["agree"]}/>
-        <ResponseCount responseTitle="Neutral" responseCount={this.props.responseData["neutral"]}/>
-        <ResponseCount responseTitle="Disagree" responseCount={this.props.responseData["disagree"]}/>
-        <ResponseCount responseTitle="Strongly Disagree" responseCount={this.props.responseData["strongly-disagree"]}/>
+        <h1>{props.surveyName}</h1>
+        <ResponseCount responseTitle="Strongly Agree" responseCount={props.responseData["strongly-agree"]}/>
+        <ResponseCount responseTitle="Agree" responseCount={props.responseData["agree"]}/>
+        <ResponseCount responseTitle="Neutral" responseCount={props.responseData["neutral"]}/>
+        <ResponseCount responseTitle="Disagree" responseCount={props.responseData["disagree"]}/>
+        <ResponseCount responseTitle="Strongly Disagree" responseCount={props.responseData["strongly-disagree"]}/>
       </div>
-    );
-  }
-}
+)
 
 export default SurveyReport;
