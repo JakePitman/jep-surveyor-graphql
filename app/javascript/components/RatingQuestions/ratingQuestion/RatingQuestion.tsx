@@ -1,13 +1,14 @@
 import * as React from "react";
 import * as styles from "./RatingQuestion.module.scss";
-import RatingQuestionOption from "./ratingQuestionOption/RatingQuestionOption";
-import RatingQuestionButton from "./ratingQuestionButton/RatingQuestionButton";
+import UpdateRatingQuestionButton from "./ratingQuestionButtons/UpdateRatingQuestionButton";
+import DeleteRatingQuestionButton from "./ratingQuestionButtons/DeleteRatingQuestionButton";
 import avulseString from "../../helperFunctions/avulseString";
+import RatingQuestionOptions from "./ratingQuestionOptions/RatingQuestionOptions";
 
 interface RatingQuestionProps {
   question: { title: string; id: string };
   deleteQuestion: any;
-  ratingQuestionsUrl: string;
+  surveyId: string;
 }
 
 class RatingQuestion extends React.Component<RatingQuestionProps> {
@@ -29,55 +30,11 @@ class RatingQuestion extends React.Component<RatingQuestionProps> {
     this.setState({ updatedQuestionNameInput: e.target.value });
   };
 
-  updateQuestionName = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (this.state.updatedQuestionNameInput) {
-      // axios
-      //   .put(`${this.props.ratingQuestionsUrl}/${this.questionData.id}.json`, {
-      //     title: this.state.updatedQuestionNameInput
-      //   })
-      //   .then(res => {
-      //     this.setState({
-      //       questionTitle: this.state.updatedQuestionNameInput,
-      //       updatedQuestionNameInput: ""
-      //     });
-      //   })
-      //   .catch(err => {
-      //     console.log(err);
-      //   });
-      alert("update clicked");
-    } else {
-      alert("Please enter something first!");
-    }
-  };
-
-  renderQuestionOptions = () => {
-    return this.questionValues.map((questionValue, i) => {
-      return (
-        <RatingQuestionOption
-          key={questionValue}
-          questionId={this.questionData.id}
-          value={questionValue}
-          optionSelected={this.optionSelected}
-        />
-      );
+  updateActualTitle = () => {
+    this.setState({
+      questionTitle: this.state.updatedQuestionNameInput,
+      updatedQuestionNameInput: ""
     });
-  };
-
-  //----------------------------------------------------------------------
-  questionValues = [
-    "strongly-disagree",
-    "disagree",
-    "neutral",
-    "agree",
-    "strongly-agree"
-  ];
-
-  optionColors: any = {
-    "strongly-disagree": "#d31d3b",
-    disagree: "#ea7b04",
-    neutral: "#f2da00",
-    agree: "#b9f100",
-    "strongly-agree": "#3dce04"
   };
 
   render() {
@@ -85,14 +42,7 @@ class RatingQuestion extends React.Component<RatingQuestionProps> {
       <div className={styles.questionContainer}>
         <div className={styles.questionContainer}>
           <div className={styles.questionColumn}>
-            <a
-              href={
-                this.props.ratingQuestionsUrl
-                  ? `${this.props.ratingQuestionsUrl}/${this.questionData.id}`
-                  : null
-              }
-              className={styles.questionTitle}
-            >
+            <a href={ `/rating_questions/${this.questionData.id}`} className={styles.questionTitle} >
               "{avulseString(this.state.questionTitle, 70)}"
             </a>
             <div className={styles.changeTitleContainer}>
@@ -103,29 +53,25 @@ class RatingQuestion extends React.Component<RatingQuestionProps> {
                 placeholder="new title"
                 onChange={this.updateQuestionNameInput}
               />
-              <RatingQuestionButton
-                label="update"
-                clickHandler={this.updateQuestionName}
+              <UpdateRatingQuestionButton
+                questionId={this.questionData.id}
+                updatedQuestionTitle={this.state.updatedQuestionNameInput}
+                handleUpdate={this.updateActualTitle}
               />
             </div>
 
-            <RatingQuestionButton
-              label="delete"
-              data-question-id={this.questionData.id}
-              clickHandler={this.props.deleteQuestion}
+            <DeleteRatingQuestionButton
+              questionId={this.questionData.id}
+              updatedQuestionTitle={this.state.updatedQuestionNameInput}
+              handleDelete={this.props.deleteQuestion}
             />
           </div>
-          <div className={styles.answersColumn}>
-            <div className={styles.optionsContainer}>
-              {this.renderQuestionOptions()}
-            </div>
-            <h1
-              className={styles.selectionIndicator}
-              style={{
-                background: this.optionColors[this.state.selectedOption]
-              }}
-            />
-          </div>
+          <RatingQuestionOptions
+            questionId={this.questionData.id}
+            currentlySelectedOption={this.state.selectedOption}
+            optionSelected={this.optionSelected}
+            surveyId={this.props.surveyId}
+          />
         </div>
       </div>
     );

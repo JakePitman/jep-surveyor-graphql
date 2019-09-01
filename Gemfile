@@ -9,6 +9,10 @@ gem 'rails', '~> 5.2.2'
 gem 'bcrypt', '~> 3.1.7'
 gem 'jwt'
 
+gem 'rb-readline'
+
+gem 'http', '~> 4.1', '>= 4.1.1'
+
 gem 'mongoid'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
