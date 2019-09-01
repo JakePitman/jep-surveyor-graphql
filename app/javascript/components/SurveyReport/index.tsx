@@ -1,5 +1,5 @@
 import * as React from "react";
-import ResponseCount from "./responseCount"
+import Report from "../Report"
 import * as styles from "./index.module.scss";
 
 interface SurveyProps {
@@ -18,11 +18,7 @@ const SurveyReport = ( props: SurveyProps ) => (
 
       <div className={styles.surveyResponsesContainer}>
         <h1>{props.surveyName}</h1>
-        <ResponseCount responseTitle="Strongly Agree" responseCount={props.responseData["strongly-agree"]}/>
-        <ResponseCount responseTitle="Agree" responseCount={props.responseData["agree"]}/>
-        <ResponseCount responseTitle="Neutral" responseCount={props.responseData["neutral"]}/>
-        <ResponseCount responseTitle="Disagree" responseCount={props.responseData["disagree"]}/>
-        <ResponseCount responseTitle="Strongly Disagree" responseCount={props.responseData["strongly-disagree"]}/>
+        <Report responseData={props.responseData}/>
       </div>
 )
 
