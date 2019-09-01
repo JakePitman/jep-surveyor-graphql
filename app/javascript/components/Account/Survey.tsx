@@ -36,7 +36,7 @@ class Survey extends React.Component<Props> {
               key={question.id}
               deleteQuestion={this.deleteQuestion}
               question={question}
-              ratingQuestionsUrl={removeJsonFromUrl()}
+              ratingQuestionUrl={removeJsonFromUrl()}
               surveyId={this.props.surveyData.id}
             />
           ))}

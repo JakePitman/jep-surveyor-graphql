@@ -8,7 +8,6 @@ import RatingQuestionOptions from "./ratingQuestionOptions/RatingQuestionOptions
 interface RatingQuestionProps {
   question: { title: string; id: string };
   deleteQuestion: any;
-  ratingQuestionsUrl: string;
   surveyId: string;
 }
 
@@ -39,19 +38,11 @@ class RatingQuestion extends React.Component<RatingQuestionProps> {
   };
 
   render() {
-    console.log(this.props.ratingQuestionsUrl)
     return (
       <div className={styles.questionContainer}>
         <div className={styles.questionContainer}>
           <div className={styles.questionColumn}>
-            <a
-              href={
-                this.props.ratingQuestionsUrl
-                  ? `${this.props.ratingQuestionsUrl}/${this.questionData.id}`
-                  : null
-              }
-              className={styles.questionTitle}
-            >
+            <a href={ `/rating_questions/${this.questionData.id}`} className={styles.questionTitle} >
               "{avulseString(this.state.questionTitle, 70)}"
             </a>
             <div className={styles.changeTitleContainer}>
