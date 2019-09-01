@@ -17,7 +17,6 @@ class RatingQuestionReport extends React.Component<RatingQuestionReportProps> {
   render(){
     return(
       <div className={styles.ratingQuestionReportContainer} >
-        <h1>HELLO WORLD</h1>
         <h2>{this.props.ratingQuestionTitle}</h2>
         {console.log(this.props.responseData)}
         <Report responseData={this.props.responseData} />
