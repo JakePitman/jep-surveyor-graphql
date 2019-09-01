@@ -39,6 +39,7 @@ class RatingQuestion extends React.Component<RatingQuestionProps> {
   };
 
   render() {
+    console.log(this.props.ratingQuestionsUrl)
     return (
       <div className={styles.questionContainer}>
         <div className={styles.questionContainer}>
