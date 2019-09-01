@@ -3,12 +3,12 @@ import * as styles from "./RatingQuestion.module.scss";
 import UpdateRatingQuestionButton from "./ratingQuestionButtons/UpdateRatingQuestionButton";
 import DeleteRatingQuestionButton from "./ratingQuestionButtons/DeleteRatingQuestionButton";
 import avulseString from "../../helperFunctions/avulseString";
-import RatingQuestionOptions from "./ratingQuestionOptions/RatingQuestionOptions"
+import RatingQuestionOptions from "./ratingQuestionOptions/RatingQuestionOptions";
 
 interface RatingQuestionProps {
   question: { title: string; id: string };
   deleteQuestion: any;
-  ratingQuestionsUrl: string;
+  surveyId: string;
 }
 
 class RatingQuestion extends React.Component<RatingQuestionProps> {
@@ -42,14 +42,7 @@ class RatingQuestion extends React.Component<RatingQuestionProps> {
       <div className={styles.questionContainer}>
         <div className={styles.questionContainer}>
           <div className={styles.questionColumn}>
-            <a
-              href={
-                this.props.ratingQuestionsUrl
-                  ? `${this.props.ratingQuestionsUrl}/${this.questionData.id}`
-                  : null
-              }
-              className={styles.questionTitle}
-            >
+            <a href={ `/rating_questions/${this.questionData.id}`} className={styles.questionTitle} >
               "{avulseString(this.state.questionTitle, 70)}"
             </a>
             <div className={styles.changeTitleContainer}>
@@ -73,10 +66,11 @@ class RatingQuestion extends React.Component<RatingQuestionProps> {
               handleDelete={this.props.deleteQuestion}
             />
           </div>
-          <RatingQuestionOptions 
+          <RatingQuestionOptions
             questionId={this.questionData.id}
             currentlySelectedOption={this.state.selectedOption}
             optionSelected={this.optionSelected}
+            surveyId={this.props.surveyId}
           />
         </div>
       </div>

@@ -1,2 +1,2 @@
 <em><p>SHOW RATING QUESTION</p></em>
-<%= react_component "RatingQuestions/ShowRatingQuestion", {ratingQuestionsUrl: rating_questions_url, question: {id: @rating_question.id.to_str, title: @rating_question.title}} %>
+<%= react_component "RatingQuestions/RatingQuestionReport", {ratingQuestionTitle: @rating_question_title, responseData: JSON.parse(@response_data)} %>

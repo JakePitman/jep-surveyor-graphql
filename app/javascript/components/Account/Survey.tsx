@@ -8,6 +8,7 @@ const removeJsonFromUrl = () => {
 
 interface Props {
   surveyData: {
+    id: string;
     name: string;
     ratingQuestions: { id: any; title: string }[];
   };
@@ -28,13 +29,15 @@ class Survey extends React.Component<Props> {
     return (
       <div>
         <h2>{this.props.surveyData.name}</h2>
+        <a href={`/survey_report/${this.props.surveyData.id}`}>See Results</a>
         <div className={styles.list}>
           {this.state.questions.map(question => (
             <RatingQuestion
               key={question.id}
               deleteQuestion={this.deleteQuestion}
               question={question}
-              ratingQuestionsUrl={removeJsonFromUrl()}
+              ratingQuestionUrl={removeJsonFromUrl()}
+              surveyId={this.props.surveyData.id}
             />
           ))}
         </div>
