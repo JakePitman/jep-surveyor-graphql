@@ -2,7 +2,9 @@ require "rails_helper"
 
 RSpec.describe "GET /rating_questions" do
   let!(:question) do
-    RatingQuestion.create!(title: "Hello World")
+    account = Account.create!(name: "test account")
+    survey = Survey.create!(name: "test survey", account: account)
+    RatingQuestion.create!(title: "Hello World", survey: survey)
   end
 
   it "shows a list of rating questions" do
