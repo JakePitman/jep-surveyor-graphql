@@ -1,3 +1,13 @@
+## Using docker
+### build & run containers
+docker-compose up --build
+### enter app terminal to execute commands
+docker ps
+docker exec -it <APP_CONTAINER_NAME> /bin/bash
+### seed db (in app terminal)
+rails db:seed
+
+## Without docker
 ### Install packages
 yarn
 ### Setup database

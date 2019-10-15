@@ -19,4 +19,5 @@ services:
       - "3000:3000"
     environment:
       MONGO_HOST: db
+      SECRET: "himitsu"
     entrypoint: bundle exec rails s -b 0.0.0.0

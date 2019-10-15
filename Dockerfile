@@ -15,7 +15,6 @@ COPY . /app
 RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
 RUN apt-get install -y nodejs build-essential
 RUN npm install yarn -g
-# RUN curl -o- -L https://yarnpkg.com/install.sh | bash
 RUN yarn install
 
 EXPOSE 3000
