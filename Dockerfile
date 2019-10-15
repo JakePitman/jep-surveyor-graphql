@@ -18,5 +18,7 @@ RUN npm install yarn -g
 # RUN curl -o- -L https://yarnpkg.com/install.sh | bash
 RUN yarn install
 
+EXPOSE 3000
+
 
 ENTRYPOINT /bin/bash
