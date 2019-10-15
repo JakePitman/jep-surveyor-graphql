@@ -1,27 +1,18 @@
-FROM ruby:2.6.4
+FROM ruby:2.6
 
-COPY Gemfile Gemfile.lock package.json package-lock.json /app/
+RUN apt-get update
+
+RUN gem install bundler
 
 WORKDIR /app
 
+COPY Gemfile Gemfile.lock /app/
+
 ENV NOKOGIRI_USE_SYSTEM_LIBRARIES 1
+RUN bundle install
 
-RUN ["gem", "install", "bundler"]
-
-RUN ["bundle", "install"]
-
-RUN apt-get install curl
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash
-
-RUN apt-get install nodejs
-
-RUN ["npm", "install", "-g", "yarn" ]
-
-RUN ["yarn", "install"]
-
-RUN apt-get install
+RUN apt-get install -y nodejs
 
 COPY . /app
 
-# ENTRYPOINT ["bundle", "exec", "rails", "s"] 3000 0.0.0.0
-ENTRYPOINT ["bundle", "exec", "rspec"]
+ENTRYPOINT /bin/bash

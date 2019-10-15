@@ -1,0 +1,12 @@
+version: "3.7"
+services:
+  db:
+    image: mongo:3.4
+
+  tests:
+    build: .
+    depends_on:
+      - db
+    environment:
+      MONGO_HOST: db
+    entrypoint: bundle exec rspec spec
