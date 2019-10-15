@@ -10,3 +10,11 @@ services:
     environment:
       MONGO_HOST: db
     entrypoint: bundle exec rspec spec
+
+  app:
+    build: .
+    depends_on:
+      - db
+    environment:
+      MONGO_HOST: db
+    entrypoint: bundle exec rails s -b 0.0.0.0
