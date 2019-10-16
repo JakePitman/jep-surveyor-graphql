@@ -1,0 +1,23 @@
+version: "3.7"
+services:
+  db:
+    image: mongo:3.4
+
+  tests:
+    build: .
+    depends_on:
+      - db
+    environment:
+      MONGO_HOST: db
+    entrypoint: bundle exec rspec spec
+
+  app:
+    build: .
+    depends_on:
+      - db
+    ports:
+      - "3000:3000"
+    environment:
+      MONGO_HOST: db
+      SECRET: "himitsu"
+    entrypoint: bundle exec rails s -b 0.0.0.0
