@@ -1,11 +1,7 @@
 ## Using docker
-### build & run containers
-docker-compose up --build
-### enter app terminal to execute commands
-docker ps
-docker exec -it <APP_CONTAINER_NAME> /bin/bash
-### seed db (in app terminal)
-rails db:seed
+### build docker container
+docker-compose up dev
+- If running with docker, Elixir MS must also be running in docker
 
 ## Without docker
 ### Install packages
