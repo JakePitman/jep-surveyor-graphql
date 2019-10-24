@@ -22,3 +22,19 @@ services:
       SECRET: "himitsu"
     command: /bin/sh -c "rm -f /rails/tmp/pids/server.pid"
     entrypoint: bin/server
+
+  dev:
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    depends_on:
+      - db
+    ports:
+      - "3000:3000"
+    environment:
+      MONGO_HOST: db
+      SECRET: "himitsu"
+    volumes:
+      - .:/app
+    working_dir: /app
+    entrypoint: bash -c "bin/setup-dev && bundle exec rails s -b 0.0.0.0"
