@@ -7,7 +7,7 @@ class RatingQuestionsController < ApplicationController
     @rating_question_id = params[:id]
     @survey_id = RatingQuestion.find(@rating_question_id).survey_id
     @rating_question_title = RatingQuestion.find(@rating_question_id).title
-    @response_data = HTTP.get("http://localhost:8080/responses?survey_id=#{@survey_id}&question_id=#{@rating_question_id}")
+    @response_data = HTTP.get("http://#{ENV.fetch("ELIXIR_MS_HOSTNAME")}:8080/responses?survey_id=#{@survey_id}&question_id=#{@rating_question_id}")
   end
 
   def new

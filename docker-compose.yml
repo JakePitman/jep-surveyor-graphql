@@ -20,6 +20,7 @@ services:
     environment:
       MONGO_HOST: db
       SECRET: "himitsu"
+      ELIXIR_MS_HOSTNAME: jep-capture_app_1
     command: /bin/sh -c "rm -f /rails/tmp/pids/server.pid"
     entrypoint: bin/server
 
@@ -34,6 +35,7 @@ services:
     environment:
       MONGO_HOST: db
       SECRET: "himitsu"
+      ELIXIR_MS_HOSTNAME: jep-capture_app_1
     volumes:
       - .:/app
     working_dir: /app
