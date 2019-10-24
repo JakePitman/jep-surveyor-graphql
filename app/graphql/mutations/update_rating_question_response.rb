@@ -11,7 +11,7 @@ module Mutations
 
     def resolve(survey_id: nil, question_id: nil, response_id: nil, value: nil)
       begin
-        HTTP.post("http://localhost:8080/responses", :json => {:survey_id => survey_id, :question_id => question_id, :response_id => response_id, :value => value})
+        HTTP.post("http://#{ENV.fetch("ELIXIR_MS_HOSTNAME")}:8080/responses", :json => {:survey_id => survey_id, :question_id => question_id, :response_id => response_id, :value => value})
         {survey_id: survey_id, question_id: question_id, response_id: response_id, value: value}
       rescue Mongoid::Errors::DocumentNotFound => e
         e
